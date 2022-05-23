@@ -1,0 +1,11 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+    "c1 c1 c1 c1 c1"
+    "c2 c3 c3 c3 c4"
+    "c2 c3 c3 c3 c4"
+    "c5 c5 c5 c5 c5";
+    height: 100%;
+}
