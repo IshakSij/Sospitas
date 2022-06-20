@@ -7,12 +7,15 @@ export default class NotesView {
         this.onNoteDelete = onNoteDelete;
         this.root.innerHTML = `
             <div class="notes__sidebar">
-                <button class="notes__add" type="button">Notiz hinzufügen</button>
+                <button class="notes__add" type="button">Medikament hinzufügen</button>
                 <div class="notes__list"></div>
+                <div>
+                <p>Mit einem Doppelklick auf die Notiz kann man sie löschen!</p>
+                </div>
             </div>
             <div class="notes__preview">
-                <input class="notes__title" type="text" placeholder="Betreff">
-                <input class="notes__body" type="text" placeholder="Bitte geben sie hier ihre neue Notiz ein">
+                <input class="notes__title" type="text" placeholder="Name des Medikaments">
+                <input class="notes__body" type="text" placeholder="Schreiben Sie hier die Informationen, die Dosis, die Einnahmezeit">
             </div>
         `;
 
