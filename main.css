@@ -38,6 +38,7 @@ div {
     "c1 c1 c1 c1"
     "c3 c3 c2 c2"
     "c3 c3 c4 c4"
+    "c6 c6 c6 c6"
     "c5 c5 c5 c5";
     height: 100%;
     background-image: linear-gradient(#6a93f8, skyblue 50%);
@@ -47,6 +48,7 @@ div {
 #id3 {grid-area: c3; }
 #id4 {grid-area: c4; }
 #id5 {grid-area: c5; }
+#id6 {grid-area: c6; }
 
 #id2, #id4{
     display: flex;
