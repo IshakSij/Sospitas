@@ -95,14 +95,13 @@ h2{
         transform: translateX(-100%);
     }
 }
-#id4{
 
-}
 #h2Not{
     font-size: xx-large;
     font-family: 'Roboto Condensed', sans-serif;
     text-decoration: none;
     line-height: 2em;
+    color: black;
 }
 
 #h2Med{
@@ -110,5 +109,11 @@ h2{
     font-family: 'Roboto Condensed', sans-serif;
     text-decoration: none;
     line-height: 3em;
+    color: black;
 
+}
+#bmi{
+    text-decoration: none;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: black;
 }
