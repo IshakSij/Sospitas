@@ -40,23 +40,52 @@
         <main id="mainSection">
             <section id="mealOTD">
                 <h2 id="h2motd"> Meal Of The Day</h2>
-                <img src="images/essen.jpg" width="300"> <br>
+                <img src="images/essen.jpg" width=300> <br>
                 <a href="https://www.lecker.de/thai-zucchinispaghetti-mit-haehnchen-75439.html"> go to the Page</a>
             </section>
 
+            <!--
             <section id="dailyHealthTip">
                 <h2 id="h2HealthTip">Daily Health Tip</h2>
             </section>
-            <section>
+            -->
+            <section id="bmiCalculatorLink">
                 <a href="BMI/BMI.html" id="bmi"> BMI Calculator </a>
+            </section>
+
+            <section class="weather">
+                <h2>Today's weather for outdoor activities</h2>
+                <div class="weatherWidget"></div>
+                <script>
+                    window.weatherWidgetConfig =  window.weatherWidgetConfig || [];
+                    window.weatherWidgetConfig.push({
+                        selector:".weatherWidget",
+                        apiKey:"H7PBANDKP5CBUPZVHP8FU4PYV",
+                        location:"Vienna, Austria",
+                        unitGroup:"metric",
+                        forecastDays:7,
+                        title:"Vienna, Austria",
+                        showTitle: true,
+                        showConditions: true
+                    });
+
+                    (function() {
+                        var d = document, s = d.createElement('script');
+                        s.src = 'https://www.visualcrossing.com/widgets/forecast-simple/weather-forecast-widget-simple.js';
+                        s.setAttribute('data-timestamp', + new Date());
+                        (d.head || d.body).appendChild(s);
+                    })();
+                </script>
             </section>
     </div>
 
 
     <div id="id4">
         <section id="notAndMedTracker">
+            <!--
             <a href="notifications.html" id="h2Not">Notifications </a>
             <br>
+            -->
             <a id="h2Med" href="Notizen/Notizen.html">Medicine Tracker</a>
         </section>
 

@@ -117,3 +117,7 @@ h2{
     font-family: 'Roboto Condensed', sans-serif;
     color: black;
 }
+
+#bmiCalculatorLink {
+    padding-top: 20px;
+}
