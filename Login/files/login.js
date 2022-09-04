@@ -4,20 +4,93 @@ window.addEventListener('load', () => {
     const input = document.querySelector("#new-task-input");
     const list_el = document.querySelector("#tasks");
 
+    setInterval(()=>{
+        reloadNotes();
+    },2000);
+
+    const reloadNotes = () => {
+        const xhttp = new XMLHttpRequest();
+
+        xhttp.onload = function() {
+            list_el.innerHTML = "";
+            // Parse JSON to String so we can print it.
+            const notes = JSON.parse(this.responseText);
+
+
+            for(let notizIndex = 0; notizIndex < notes.length; notizIndex++){
+                const task = notes[notizIndex].content;
+                const notizUuid = notes[notizIndex].uuid;
+
+                const task_el = document.createElement('div');
+                task_el.classList.add('task');
+
+                const task_content_el = document.createElement('div');
+                task_content_el.classList.add('content');
+
+                task_el.appendChild(task_content_el);
+
+                const task_input_el = document.createElement('input');
+                task_input_el.classList.add('text');
+                task_input_el.type = 'text';
+                task_input_el.value = task;
+                task_input_el.setAttribute('readonly', 'readonly');
+
+                task_content_el.appendChild(task_input_el);
+
+                const task_actions_el = document.createElement('div');
+                task_actions_el.classList.add('actions');
+
+                /*
+                Create Edit and Delete Button in the Task Bar for each Task.
+                */
+
+                const task_delete_el = document.createElement('button');
+                task_delete_el.classList.add('delete');
+                task_delete_el.innerText = 'Delete';
+
+                task_actions_el.appendChild(task_delete_el);
+
+                task_el.appendChild(task_actions_el);
+
+
+                list_el.appendChild(task_el);
+
+
+
+                task_delete_el.addEventListener('click', () => {
+                    const xhttp = new XMLHttpRequest();
+                    xhttp.onload = function() {
+                        reloadNotes();
+                    };
+
+                    xhttp.open("DELETE", "tasks");
+                    xhttp.setRequestHeader("Content-type", "application/json");
+                    // When communicating content has to be parsed back to JSON.
+                    xhttp.send(JSON.stringify({noteUuid:notizUuid}));
+                });
+            }
+        };
+
+        // GET Tasks after the previous was deleted.
+        xhttp.open("GET", "tasks");
+        xhttp.send();
+    };
+
 
     const xhttp = new XMLHttpRequest();
-    xhttp.onload = function () {
+    xhttp.onload = function() {
         // variable if user is logged in, JSON to Text.
         var isLoggedIn = JSON.parse(this.responseText);
-        if (isLoggedIn) {
+        if(isLoggedIn){
             // If user gets logged in -> getElementByID(userLoggedIn)
             document.getElementById("userLoggedIn").style.setProperty('visibility', "visible");
             reloadNotes();
-        } else {
+        }else{
             // If not, the user goes to Registration.
             document.getElementById("newUser").style.setProperty('visibility', "visible");
         }
     };
+
     // Logs completely in the profile.
     xhttp.open("GET", "getProfile");
     xhttp.send();
@@ -100,4 +173,18 @@ window.addEventListener('load', () => {
         xhttp.send(JSON.stringify({email,password}));
     });
 
+
+    form.addEventListener('submit', (e) => {
+        // maintains from realoading the whole page when clicking on "Add Task"
+        e.preventDefault();
+        const task = input.value;
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+            reloadNotes(); //-> responsible for creating the task
+        };
+        xhttp.open("PUT", "tasks");
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send(JSON.stringify({noteContent:task}));
+        input.value = ''; // -> to not have the same word in the task bar again after submitting.
+    });
 });
