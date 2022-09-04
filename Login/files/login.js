@@ -157,9 +157,7 @@ window.addEventListener('load', () => {
             var isLoggedIn = JSON.parse(this.responseText).status;
             if(isLoggedIn){
                 alert("Willkommen auf unsere Platform!");
-                document.getElementById("userLoggedIn").style.setProperty('visibility', "visible");
-                document.getElementById("newUser").style.setProperty('visibility', "hidden");
-                reloadNotes();
+                window.location.href="main.html;"
                 passwordInput.value = "";
                 emailInput.value = "";
             }else{
